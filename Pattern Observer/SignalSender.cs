@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Signal Sender", menuName = "Scriptable Object/SignalSender", order = 0)]
 public class SignalSender : ScriptableObject
 {
-    public List<SignalListener> listeners = new List<SignalListener>();
+    public List<ISignalListener> listeners = new List<ISignalListener>();
 
     public void Raise()
     {
