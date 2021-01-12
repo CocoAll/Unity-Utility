@@ -1,4 +1,4 @@
-﻿public Interface ISignalListener :
+﻿public interface ISignalListener
 {
     void OnSignalRaised();
 }
