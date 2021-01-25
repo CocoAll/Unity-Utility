@@ -1,4 +1,7 @@
-﻿public interface ISignalListener
+﻿namespace Unity.Utils.PatternObserver
 {
-    void OnSignalRaised();
+    public interface ISignalListener
+    {
+        void OnSignalRaised();
+    }
 }

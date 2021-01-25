@@ -1,26 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
-public abstract class AbstractSignalSender
+namespace Unity.Utils.PatternObserver
 {
-    public List<ISignalListener> listeners = new List<ISignalListener>();
-
-    public void Raise()
+    public abstract class AbstractSignalSender
     {
-        for(int i = listeners.Count -1; i >= 0; i--)
+        public List<ISignalListener> listeners = new List<ISignalListener>();
+
+        public void Raise()
         {
-            listeners[i].OnSignalRaised();
+            for (int i = listeners.Count - 1; i >= 0; i--)
+            {
+                listeners[i].OnSignalRaised();
+            }
         }
-    }
 
-    public void RegisterListener(ISignalListener signalListener)
-    {
-        listeners.Add(signalListener);
-    }
+        public void RegisterListener(ISignalListener signalListener)
+        {
+            listeners.Add(signalListener);
+        }
 
-    public void UnregisterListener(ISignalListener signalListener)
-    {
-        listeners.Remove(signalListener);
+        public void UnregisterListener(ISignalListener signalListener)
+        {
+            listeners.Remove(signalListener);
+        }
     }
 }
