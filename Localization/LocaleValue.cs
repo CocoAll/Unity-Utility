@@ -1,12 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Locale Object", menuName = "Scriptable Object/Locale", order = 6)]
-public class LocaleValue : ScriptableObject
+namespace Unity.Utils.Localization
 {
+    [CreateAssetMenu(fileName = "Locale Object", menuName = "Scriptable Object/Locale", order = 6)]
+    public class LocaleValue : ScriptableObject
+    {
 
-    public SystemLanguage currentLocale;
-    
-    public Locale[] availableLocale;
+        public SystemLanguage currentLocale;
+
+        public Locale[] availableLocale;
+    }
 }

@@ -1,10 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[System.Serializable]
-public class Locale
+namespace Unity.Utils.Localization
 {
-    public SystemLanguage locale;
-    public string localeRef;
+    [System.Serializable]
+    public class Locale
+    {
+        public SystemLanguage locale;
+        public string localeRef;
+    }
 }

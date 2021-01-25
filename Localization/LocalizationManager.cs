@@ -1,48 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Xml;
 
-public class LocalizationManager : MonoBehaviour
+namespace Unity.Utils.Localization
 {
-    private static readonly string DEFAULT_LOCAL_REF = "en";
-
-    private XMLLoader xmlLoader;
-    [SerializeField]
-    private LocaleValue locale;
-
-    private Dictionary<string, string[]> entries;
-
-    private void Start() 
+    public class LocalizationManager : MonoBehaviour
     {
-        LoadLocale();
-    }
+        private static readonly string DEFAULT_LOCAL_REF = "en";
 
-    public void LoadLocale()
-    {
-        string localeRef = FindLocaleRef();
-        xmlLoader = new XMLLoader(localeRef);
-        entries = xmlLoader.loadDictionnary();
-    }
+        private XMLLoader xmlLoader;
+        [SerializeField]
+        private LocaleValue locale;
 
-    public string[] GetDialogue(string key)
-    {
-        if (!entries.ContainsKey(key)){
-            throw new System.Exception("Impossible to found " + key + " in localization file");
-        }
+        private Dictionary<string, XmlNode[]> entries;
 
-        return entries[key];
-    }
-
-    private string FindLocaleRef()
-    {
-        foreach(Locale loc in locale.availableLocale)
+        private void Start()
         {
-            if(loc.locale == locale.currentLocale)
-            {
-                return loc.localeRef;
-            }
+            LoadLocale();
         }
 
-        return DEFAULT_LOCAL_REF;
+        public void LoadLocale()
+        {
+            string localeRef = FindLocaleRef();
+            xmlLoader = new XMLLoader(localeRef);
+            entries = xmlLoader.loadDictionnary();
+        }
+
+        public XmlNode[] GetDialogue(string key)
+        {
+            if (!entries.ContainsKey(key))
+            {
+                throw new System.Exception("Impossible to found " + key + " in localization file");
+            }
+
+            return entries[key];
+        }
+
+        private string FindLocaleRef()
+        {
+            foreach (Locale loc in locale.availableLocale)
+            {
+                if (loc.locale == locale.currentLocale)
+                {
+                    return loc.localeRef;
+                }
+            }
+            return DEFAULT_LOCAL_REF;
+        }
     }
 }
